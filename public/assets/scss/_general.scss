@@ -1,0 +1,370 @@
+// General Style
+html {
+  scroll-behavior: smooth;
+  // overflow-x: hidden;
+  height: 100%;
+}
+body {
+  background: $dominate-color;
+  overflow-x: hidden;
+  color: $white;
+  height: 100%;
+  margin: 0;
+  font-family: $Inter;
+  @include fontSize-lineHeight(18px, 26px);
+  @media (max-width: 1600px) {
+    @include fontSize-lineHeight(16px, 22px);
+  }
+  .site {
+    overflow: unset;
+  }
+  &.no-scroll, &.fixed {
+    overflow: hidden;
+  }
+
+  &.admin-bar {
+
+  }
+}
+
+html *,
+body * {
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: #000;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  @include width-height(90%, 100%);
+  max-width: unset;
+  margin: auto;
+  @media (min-width: 1200px) and (max-width: 1599px) {
+    width: 93%;
+  }
+
+  // @media (min-width: 1401px) and (max-width: 1500px) {
+  //   padding: 0 80px !important;
+  // }
+
+  // @media (min-width: 1024px) and (max-width: 1400px) {
+  //   padding: 0 50px !important;
+  // }
+  @media (max-width: 991px) {
+    @include width-height(100%, 100%);
+    padding: 0 20px;
+  }
+}
+
+a {
+  display: inline-block;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: .2s ease-in-out;
+  color: $dominate-color;
+
+  &:hover {
+    // opacity: 0.8;
+  }
+
+  * {
+    cursor: pointer !important;
+  }
+
+  object {
+    pointer-events: none;
+  }
+}
+
+.nav-link {
+  color: $white;
+}
+
+ul {
+  border: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.dekstop {
+  display: block !important;
+  @media (max-width: 991px) {
+    display: none !important;
+  }
+}
+
+.mobile {
+  display: none !important;
+  @media (max-width: 991px) {
+    display: block !important;
+  }
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+// ==========================================================================================================
+
+.IBMPlexMono-Bold {
+  font-family: $IBMPlexMono-Bold;
+  font-weight: 700;
+}
+
+.IBMPlexMono-ExtraLight {
+  font-family: $IBMPlexMono-ExtraLight;
+  font-weight:200;
+}
+
+.IBMPlexMono-Light {
+  font-family: $IBMPlexMono-Light;
+  font-weight: 300;
+}
+
+.IBMPlexMono-Medium {
+  font-family: $IBMPlexMono-Medium;
+  font-weight: 500;
+}
+
+.IBMPlexMono {
+  font-family: $IBMPlexMono;
+  font-weight: 400;
+}
+
+.IBMPlexMono-SemiBold {
+  font-family: $IBMPlexMono-SemiBold;
+  font-weight: 600;
+}
+
+.IBMPlexMono-Thin {
+  font-family: $IBMPlexMono-Thin;
+  font-weight: 100;
+}
+
+.Inter-Black {
+  font-family: $Inter-Black;
+  font-weight: 900;
+}
+
+.Inter-Bold {
+  font-family: $Inter-Bold;
+  font-weight: 700;
+}
+
+.Inter-ExtraBold {
+  font-family: $Inter-ExtraBold;
+  font-weight: 800;
+}
+
+.Inter-ExtraLight {
+  font-family: $Inter-ExtraLight;
+  font-weight: 200;
+}
+
+.Inter-Light {
+  font-family: $Inter-Light;
+  font-weight: 300;
+}
+
+.Inter-Medium {
+  font-family: $Inter-Medium;
+  font-weight: 500;
+}
+
+.Inter {
+  font-family: $Inter;
+  font-weight: 400;
+}
+
+.Inter-SemiBold {
+  font-family: $Inter-SemiBold;
+  font-weight: 600;
+}
+
+.Inter-Thin {
+  font-family: $Inter-Thin;
+  font-weight: 100;
+}
+
+// -----------------------------------------------------
+.Caveat {
+  font-family: $Caveat;
+  font-weight: 400;
+}
+.Caveat-Medium {
+  font-family: $Caveat-Medium;
+  font-weight: 500;
+}
+.Caveat-SemiBold {
+  font-family: $Caveat-SemiBold;
+  font-weight: 600;
+}
+
+.Caveat-Bold {
+  font-family: $Caveat-Bold;
+  font-weight: 100;
+}
+// -----------------------------------------------------
+.primary-color {
+  color: $dominate-color;
+}
+.bg-primary-color {
+  background-color: $dominate-color;
+}
+
+.secondary-white {
+  color: $white;
+}
+.bg-secondary-white {
+  background-color: $white;
+}
+
+.accent-color {
+  color: $accent-color;
+}
+
+.bg-accent-color {
+  background-color: $accent-color;
+}
+
+.logo-color-1 {
+  color: $logo-color-1;
+}
+
+.bg-logo-color-1 {
+  background-color: $logo-color-1;
+}
+
+.gray1 {
+  color: $gray1;
+}
+
+.bg-gray1 {
+  background-color: $gray1;
+}
+
+.gray2 {
+  color: $gray2;
+}
+
+.bg-gray2 {
+  background-color: $gray2;
+}
+
+.gray3 {
+  color: $gray3;
+}
+
+.bg-gray3 {
+  background-color: $gray3;
+}
+
+.gray4 {
+  color: $gray4;
+}
+
+.bg-gray4 {
+  background-color: $gray4;
+}
+
+.show {
+  display: block !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.font-16 {
+  @include fontSize-lineHeight(16px, 20px);
+}
+
+.font-20 {
+  @include fontSize-lineHeight(20px, 28px);
+}
+
+.font-22 {
+  @include fontSize-lineHeight(22px, 30px);
+}
+
+.font-24 {
+  @include fontSize-lineHeight(24px, 32px);
+  @media (min-width: 1200px) and  (max-width: 1600px) {
+    @include fontSize-lineHeight(18px, 26px);
+  }
+}
+
+.font-28 {
+  @include fontSize-lineHeight(28px, 36px);
+  @media (min-width: 1200px) and  (max-width: 1600px) {
+    @include fontSize-lineHeight(20px, 30px);
+  }
+  @media (max-width: 767px) {
+    @include fontSize-lineHeight(18px, 26px);
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.img-cover {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.caption {
+  @extend .IBMPlexMono-Medium;
+  @include fontSize-lineHeight(16px, 20px);
+  letter-spacing: 2.56px;
+  
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    @include fontSize-lineHeight(14px, 18px);
+  }
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+}
+
+.section-half {
+  width: 50%;
+  position: relative;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+.section-full {
+  width: 100%;
+}

@@ -1,0 +1,168 @@
+// .app-offerings {
+//     padding: 50px 0;
+//     .container {
+//         @include flex(flex-start, null, null, null);
+//         @media (max-width: 991px) {
+//             flex-direction: column;
+//         }
+
+//         .app-offerings-title {
+//             position: sticky;
+//             top: 121px;
+//             margin-bottom: 50px;
+//             z-index: 999999;
+//             @media (min-width: 1200px) and (max-width: 1600px) {
+//                 top: 100px;
+//             }
+//             @media (max-width: 991px) {
+//                 position: relative;
+//                 top: unset;
+//             }
+//             h2 {
+//                 margin-bottom: 16px;
+//             }
+//         }
+
+//         .app-offerings-listing {
+//             z-index: 999999;
+//             .app-offerings-items {
+//                 @include flex(center, space-between, null, null);
+//                 height: 150px;
+//                 padding: 25px;
+//                 margin-bottom: 24px;
+//                 @media (min-width: 1200px) and (max-width: 1600px) {
+//                     height: 80px;
+//                 }
+
+//                 @media (max-width: 991px) {
+//                     height: 100px;
+//                     padding: 18px;
+//                 }
+//                 * {
+//                     cursor: pointer !important;
+//                 }
+//                 h4 {
+//                     margin-right: 10px;
+//                 }
+
+//                 object {
+//                     width: 80px;
+//                     height: 22px;
+//                     @media (min-width: 1200px) and (max-width: 1600px) {
+//                         width: 60px;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// .app-development-process {
+//     .we-can-help-tab-main {
+//         .we-can-help-tab-left {
+//             .we-can-help-tab-left-item {
+//                 min-height: 100px;
+//                 height: 100px;
+//                 @include flex(center, null, null, null);
+//                 @media (min-width: 1200px) and (max-width: 1600px) {
+//                     height: 80px;
+//                     min-height: 80px;
+//                 }
+
+//                 h5 {
+//                     margin-bottom: 0;
+//                 }
+//             }
+//         }
+
+//         .we-can-help-tab-right {
+//             .we-can-help-tab-right-block-wrapper {
+//                 padding: 65px;
+
+//                 img {
+//                     width: 100%;
+//                     height: 320px;
+//                     margin-bottom: 20px;
+//                     object-fit: cover;
+//                     @media (min-width: 1200px) and (max-width: 1600px) {
+//                         height: 240px;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+.service-detail {
+    .service-detail-content {
+        h2, h3, h4, h5, h6 {
+            margin-bottom: 20px;
+        }
+
+        .services-details-image {
+            margin-bottom: 20px;
+            // height: 600px;
+
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                border-radius: 12px;
+            }
+        }
+        .features-text {
+            margin: 15px 0;
+
+            p {
+                margin-bottom: 25px;
+            }
+        }
+    }
+}
+
+.services-widget {
+    .widget {
+        margin-bottom: 30px;
+        box-shadow: 0 1px 6px rgb(255 255 255 / 10%);
+        padding: 40px 30px;
+        border-radius: 10px;
+
+        .widget-title {
+            position: relative;
+            padding-bottom: 10px;
+            text-transform: capitalize;
+            border-bottom: 1px solid #ffffff;
+            margin-bottom: 30px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -1px;
+                width: 50px;
+                height: 1px;
+                background-color: $logo-color-1;
+            }
+        }
+    }
+
+    ul {
+        li {
+            position: relative;
+            margin-bottom: 12px;
+
+            a {
+                display: block;
+                padding: 12px 15px;
+                border-radius: 5px;
+                background-color: $accent-color;
+                transition: all ease 350ms;
+
+                &:hover,
+                &.active {
+                    background-color: $logo-color-1;
+                }
+            }
+        }
+    }
+}

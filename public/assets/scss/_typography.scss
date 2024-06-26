@@ -1,0 +1,145 @@
+/* --------------------------------------------------
+	typography
+-------------------------------------------------- */
+// html, body, span, applet, object, iframe, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u,  center, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, mark, audio, video {
+// }
+
+// dl,
+// dt,
+// dd,
+// ol,
+// ul,
+// li,
+// em,
+// i,
+// time,
+// div {
+// }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1,
+.h1 {
+  @include fontSize-lineHeight(3.24vw, 4.24vw);
+  font-family: $IBMPlexMono-Bold;
+  font-weight: 700;
+
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    @include fontSize-lineHeight(46px, 60px);
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @include fontSize-lineHeight(50px, normal);
+  }
+  @media (max-width: 767px) {
+    @include fontSize-lineHeight(40px, normal);
+  }
+}
+
+h2,
+.h2 {
+  font-family: $IBMPlexMono-SemiBold;
+  @include fontSize-lineHeight(2.81vw, 3.65vw);
+  font-weight: 600;
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    @include fontSize-lineHeight(36px, 48px);
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @include fontSize-lineHeight(44px, normal);
+  }
+
+  @media (max-width: 767px) {
+    @include fontSize-lineHeight(34px, normal);
+  }
+}
+
+h3,
+.h3 {
+  font-family: $IBMPlexMono-SemiBold;
+  @include fontSize-lineHeight(2.08vw, 2.92vw);
+  font-weight: 600;
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    @include fontSize-lineHeight(28px, 40px);
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @include fontSize-lineHeight(34px, normal);
+  }
+
+  @media (max-width: 767px) {
+    @include fontSize-lineHeight(30px, normal);
+  }
+}
+
+h4,
+.h4 {
+  font-family: $IBMPlexMono-SemiBold;
+  @include fontSize-lineHeight(1.88vw, 2.40vw);
+  font-weight: 600;
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    @include fontSize-lineHeight(26px, 32px);
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @include fontSize-lineHeight(30px, normal);
+  }
+
+  @media (max-width: 767px) {
+    @include fontSize-lineHeight(26px, normal);
+  }
+}
+
+h5,
+.h5 {
+  font-family: $IBMPlexMono-SemiBold;
+  @include fontSize-lineHeight(1.67vw, 2.19vw);
+  font-weight: 600;
+
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    @include fontSize-lineHeight(24px, 30px);
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @include fontSize-lineHeight(26px, normal);
+  }
+
+  @media (max-width: 767px) {
+    @include fontSize-lineHeight(22px, normal);
+  }
+}
+
+h6,
+.h6 {
+  font-family: $IBMPlexMono-Bold;
+  @include fontSize-lineHeight(22px, 28px);
+  font-weight: 700;
+  
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    @include fontSize-lineHeight(18px, 24px);
+  }
+
+  @media (max-width: 767px) {
+    @include fontSize-lineHeight(18px, normal);
+  }
+}
+
+p {
+  @include fontSize-lineHeight(20px, 26px);
+  margin: 0;
+  font-weight: 400;
+
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    @include fontSize-lineHeight(16px, 22px);
+  }
+
+  @media (max-width: 767px) {
+    @include fontSize-lineHeight(16px, 24px);
+  }
+}

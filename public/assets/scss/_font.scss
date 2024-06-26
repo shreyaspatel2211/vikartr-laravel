@@ -1,0 +1,195 @@
+// Font Family
+
+$IBMPlexMono-Bold: 'IBMPlexMono-Bold';
+$IBMPlexMono-Bold-url: url('../../assets/fonts/IBMPlexMono-Bold.ttf') format('truetype');
+
+$IBMPlexMono-ExtraLight: 'IBMPlexMono-ExtraLight';
+$IBMPlexMono-ExtraLight-url: url('../../assets/fonts/IBMPlexMono-ExtraLight.ttf') format('truetype');
+
+$IBMPlexMono-Light: 'IBMPlexMono-Light';
+$IBMPlexMono-Light-url: url('../../assets/fonts/IBMPlexMono-Light.ttf') format('truetype');
+
+$IBMPlexMono-Medium: 'IBMPlexMono-Medium';
+$IBMPlexMono-Medium-url: url('../../assets/fonts/IBMPlexMono-Medium.ttf') format('truetype');
+
+$IBMPlexMono: 'IBMPlexMono';
+$IBMPlexMono-url: url('../../assets/fonts/IBMPlexMono-Regular.ttf') format('truetype');
+
+$IBMPlexMono-SemiBold: 'IBMPlexMono-SemiBold';
+$IBMPlexMono-SemiBold-url: url('../../assets/fonts/IBMPlexMono-SemiBold.ttf') format('truetype');
+
+$IBMPlexMono-Thin: 'IBMPlexMono-Thin';
+$IBMPlexMono-Thin-url: url('../../assets/fonts/IBMPlexMono-Thin.ttf') format('truetype');
+
+$Inter-Black: 'Inter-Black';
+$Inter-Black-url: url('../../assets/fonts/Inter-Black.ttf') format('truetype');
+
+$Inter-Bold: 'Inter-Bold';
+$Inter-Bold-url: url('../../assets/fonts/Inter-Bold.ttf') format('truetype');
+
+$Inter-ExtraBold: 'Inter-ExtraBold';
+$Inter-ExtraBold-url: url('../../assets/fonts/Inter-ExtraBold.ttf') format('truetype');
+
+$Inter-ExtraLight: 'Inter-ExtraLight';
+$Inter-ExtraLight-url: url('../../assets/fonts/Inter-ExtraLight.ttf') format('truetype');
+
+$Inter-Light: 'Inter-Light';
+$Inter-Light-url: url('../../assets/fonts/Inter-Light.ttf') format('truetype');
+
+$Inter-Medium: 'Inter-Medium';
+$Inter-Medium-url: url('../../assets/fonts/Inter-Medium.ttf') format('truetype');
+
+$Inter: 'Inter';
+$Inter-url: url('../../assets/fonts/Inter-Regular.ttf') format('truetype');
+
+$Inter-SemiBold: 'Inter-SemiBold';
+$Inter-SemiBold-url: url('../../assets/fonts/Inter-SemiBold.ttf') format('truetype');
+
+$Inter-Thin: 'Inter-Thin';
+$Inter-Thin-url: url('../../assets/fonts/Inter-Thin.ttf') format('truetype');
+
+$Caveat: 'Caveat';
+$Caveat-url: url('../../assets/fonts/Caveat-Regular.ttf') format('truetype');
+
+$Caveat-Medium: 'Caveat-Medium';
+$Caveat-Medium-url: url('../../assets/fonts/Caveat-Medium.ttf') format('truetype');
+
+$Caveat-SemiBold: 'Caveat-SemiBold';
+$Caveat-SemiBold-url: url('../../assets/fonts/Caveat-SemiBold.ttf') format('truetype');
+
+$Caveat-Bold: 'Caveat-Bold';
+$Caveat-Bold-url: url('../../assets/fonts/Caveat-Bold.ttf') format('truetype');
+
+@font-face {
+  font-family: $IBMPlexMono-Bold;
+  font-style: normal;
+  src: $IBMPlexMono-Bold-url;
+}
+
+@font-face {
+  font-family: $IBMPlexMono-ExtraLight;
+  font-style: normal;
+  src: $IBMPlexMono-ExtraLight-url;
+}
+
+@font-face {
+  font-family: $IBMPlexMono-Light;
+  font-style: normal;
+  src: $IBMPlexMono-Light-url;
+}
+
+@font-face {
+  font-family: $IBMPlexMono-Medium;
+  font-style: normal;
+  src: $IBMPlexMono-Medium-url;
+}
+
+@font-face {
+  font-family: $IBMPlexMono;
+  font-style: normal;
+  src: $IBMPlexMono-url;
+}
+
+@font-face {
+  font-family: $IBMPlexMono-SemiBold;
+  font-style: normal;
+  src: $IBMPlexMono-SemiBold-url;
+}
+
+@font-face {
+  font-family: $IBMPlexMono-Thin;
+  font-style: normal;
+  src: $IBMPlexMono-Thin-url;
+}
+
+@font-face {
+  font-family: $Inter-Thin;
+  font-style: normal;
+  src: $Inter-Thin-url;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: $Inter-ExtraLight;
+  font-style: normal;
+  src: $Inter-ExtraLight-url;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: $Inter-Light;
+  font-style: normal;
+  src: $Inter-Light-url;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: $Inter;
+  font-style: normal;
+  src: $Inter-url;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: $Inter-Medium;
+  font-style: normal;
+  src: $Inter-Medium-url;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: $Inter-SemiBold;
+  font-style: normal;
+  src: $Inter-SemiBold-url;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: $Inter-Bold;
+  font-style: normal;
+  src: $Inter-Bold-url;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: $Inter-ExtraBold;
+  font-style: normal;
+  src: $Inter-ExtraBold-url;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: $Inter-Black;
+  font-style: normal;
+  src: $Inter-Black-url;
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: $Caveat;
+  font-style: normal;
+  src: $Caveat-url;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: $Caveat-Medium;
+  font-style: normal;
+  src: $Caveat-Medium-url;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: $Caveat-SemiBold;
+  font-style: normal;
+  src: $Caveat-SemiBold-url;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: $Caveat-Bold;
+  font-style: normal;
+  src: $Caveat-Bold-url;
+  font-weight: 700;
+}
+
