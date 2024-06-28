@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Storage;
 
 class CareerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view career', ['only' => ['index']]);
+        $this->middleware('permission:create career', ['only' => ['create','store']]);
+        $this->middleware('permission:update career', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete career', ['only' => ['destroy']]);
+    }
     public function index(CareerDataTable $dataTable)
     {
         return $dataTable->render('admin.career.index');

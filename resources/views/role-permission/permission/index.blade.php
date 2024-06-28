@@ -1,5 +1,11 @@
 @extends('adminlte::page')
 @section('title', 'Permissions')
+@section('css')
+<link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap5.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/buttons.bootstrap5.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/select.bootstrap5.min.css') }}">
+@stop
+
 @section('content')
 
 @if(session('error'))
@@ -13,53 +19,33 @@
     {{ session('status') }}
 </div>
 @endif
-<div class="card mr-5 mt-5 ml-5">
-    <div class="mt-3 ml-3 mb-3 font-weight-bold">
+
+<div class="card">
+    <div class="card-header">
         <div class="row">
             <div class="col-8">
-                <h1>Permissions</h1>
+                <h1>Manage Permissions</h1>
             </div>
-            <div class="col-2">
-            @can('create permission')
-                <a href="{{ url('permissions/create') }}" class="btn btn-primary">New Permission</a>
-                @endcan
+            <div class="col-4">
+                <div class="btn-group" role="group">
+                    <a href="{{ url('permissions/create') }}" class="btn btn-primary rounded">New Permission</a>
+                </div>
             </div>
         </div>
     </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th class="text-center">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach ($permissions as $permission)
-            <tr>
-                <td>{{ $permission->id }}</td>
-                <td>{{ $permission->name }}</td>
-        
-                <td class="text-center">
-                    <div class="btn-group" role="group">
-                        @can('update permission')
-                        <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-primary rounded mr-3">Edit</a>
-                        @endcan
-                        @can('delete permission')
-                        <form action="{{ url('permissions/'.$permission->id.'/delete') }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        </form>
-                        @endcan
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="card-body">
+        {{ $dataTable->table() }}
+    </div>
 </div>
+@stop
+
+@section('js')
+<script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/js/dataTables.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('assets/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/js/buttons.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+{{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 
 @stop
 

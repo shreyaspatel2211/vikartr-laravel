@@ -32,21 +32,23 @@ class WorklogDataTable extends DataTable
                 $deleteUrl = route('admin_worklog_delete', $row->id);
                 $csrfToken = csrf_token();
                 $today = now()->toDateString();
-    
-                if ($row->date == $today) {
-                    return <<<HTML
-                        <a href="$editUrl" class="btn btn-sm btn-primary">Edit</a>
-                        <form action="$deleteUrl" method="POST" style="display:inline;">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="$csrfToken">
-                            <button type="submit" class="btn btn-sm btn-danger mt-1" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
-                    HTML;
-                } else {
-                    return <<<HTML
-                        <button class="btn btn-primary rounded mr-3" disabled>Edit</button>
-                        <button class="btn btn-danger mt-1" disabled>Delete</button>
-                    HTML;
+                $user = auth()->user();
+                if ($user->role_id == 1) {
+                    if ($row->date == $today) {
+                        return <<<HTML
+                            <a href="$editUrl" class="btn btn-sm btn-primary">Edit</a>
+                            <form action="$deleteUrl" method="POST" style="display:inline;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="$csrfToken">
+                                <button type="submit" class="btn btn-sm btn-danger mt-1" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        HTML;
+                    } else {
+                        return <<<HTML
+                            <button class="btn btn-primary rounded mr-3" disabled>Edit</button>
+                            <button class="btn btn-danger mt-1" disabled>Delete</button>
+                        HTML;
+                    }
                 }
             });
     }
@@ -59,7 +61,17 @@ class WorklogDataTable extends DataTable
      */
     public function query(Worklog $model)
     {
-        return $model->newQuery();
+         /** @var User $user */         
+         $user = auth()->user();
+         if ($user->role_id == 1) {
+             // Return all records
+             return $model->newQuery();
+         } else {
+             // Return records for the current user
+             return $model->newQuery()->where('user_id', $user->id);
+         }
+         return $model->newQuery();
+       
     }
 
     /**
@@ -84,27 +96,32 @@ class WorklogDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
+        $columns = [
             Column::computed('project_name')
-            ->title('Project Name')
-            ->exportable(false)
-            ->printable(false)
-            ->width(150)
-            ->addClass('text-center'),
+                ->title('Project Name')
+                ->exportable(false)
+                ->printable(false)
+                ->width(150)
+                ->addClass('text-center'),
             Column::computed('user_name')
-            ->title('User Name')
-            ->exportable(false)
-            ->printable(false)
-            ->width(150)
-            ->addClass('text-center'),
+                ->title('User Name')
+                ->exportable(false)
+                ->printable(false)
+                ->width(150)
+                ->addClass('text-center'),
             Column::make('date'),
             Column::make('description'),
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
         ];
+
+        if (auth()->user()->role_id == 1) {
+            $columns[] = Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center');
+        }
+
+        return $columns;
     }
 
     /**

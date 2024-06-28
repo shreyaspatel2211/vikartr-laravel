@@ -11,23 +11,23 @@
         <h1>Edit Worklog</h1>
     </div>
 
-<form method="post" action="{{ route('admin_worklog_update', $worklog->id) }}" class="mr-5 ml-5">
+    <form method="post" action="{{ route('admin_worklog_update', $worklog->id) }}" class="mr-5 ml-5">
         <div class="form-group">
             @csrf
             @method('PATCH')
             <div class="form-group">
-        <label for="project_name">Project Name:</label>
-        <select class="form-control" id="project_id" name="project_id">
-            <option value="{{ $worklog->project->id }}" selected>{{ $worklog->project->name }}</option>
-                        @foreach($projects as $project)
-                            <option value="{{ $project->id }}">{{ $project->name }}</option>
-                        @endforeach
-                    </select>
-    </div>
-    <div class="form-group">
-        <label for="description">Description:</label>
-        <textarea class="form-control" id="description" name="description" rows="5">{{ $worklog->description }}</textarea>
-    </div>
+                <label for="project_name">Project Name:</label>
+                <select class="form-control" id="project_id" name="project_id">
+                    <option value="{{ $worklog->project->id }}" selected>{{ $worklog->project->name }}</option>
+                    @foreach($projects as $project)
+                    <option value="{{ $project->id }}">{{ $project->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description" rows="5">{{ $worklog->description }}</textarea>
+            </div>
             <br>
             <button type="submit" class="btn btn-block btn-primary">Update Worklog</button>
         </div>

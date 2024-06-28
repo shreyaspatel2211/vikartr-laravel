@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view company', ['only' => ['index']]);
+        $this->middleware('permission:create company', ['only' => ['create','store']]);
+        $this->middleware('permission:update company', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete company', ['only' => ['destroy']]);
+    }
+
     public function index(CompanyDataTable $dataTable){
         return $dataTable->render('admin.company.index');
     }

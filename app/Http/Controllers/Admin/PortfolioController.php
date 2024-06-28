@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Storage;
 
 class PortfolioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view portfolio', ['only' => ['index']]);
+        $this->middleware('permission:create portfolio', ['only' => ['create','store']]);
+        $this->middleware('permission:update portfolio', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete portfolio', ['only' => ['destroy']]);
+    }
     public function index(PortfolioDataTable $dataTable){
         return $dataTable->render('admin.portfolio.index');
     }

@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Project;
+use App\Models\Role;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProjectDataTable extends DataTable
+class RoleDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -22,39 +22,33 @@ class ProjectDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', function ($row) {
-                $editUrl = route('admin_project_edit', $row->id);
-                $deleteUrl = route('admin_project_delete', $row->id);
+                $editUrl = url('roles/' . $row->id . '/edit');
+                $deleteUrl =  url('roles/' . $row->id . '/delete');
+                $givePermissionUrl =  url('roles/' . $row->id . '/give-permissions');
+
                 $csrfToken = csrf_token();
-                $user = auth()->user();
-                if ($user->role_id == 1) {
                 return <<<HTML
+                    <a href="$givePermissionUrl" class="btn btn-warning mr-3 rounded">Add / Edit Role Permission</a>
                     <a href="$editUrl" class="btn btn-sm btn-primary">Edit</a>
                     <form action="$deleteUrl" method="POST" style="display:inline;">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="$csrfToken">
                         <button type="submit" class="btn btn-sm btn-danger mt-1" onclick="return confirm('Are you sure?')">Delete</button>
-                    </form> 
+                    </form>
+                   
                 HTML;
-                }
             });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Project $model
+     * @param \App\Models\Role $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Project $model)
+    public function query(Role $model)
     {
-        $user = auth()->user();
-        if ($user->role_id == 1) {
-            return $model->newQuery();
-        } else {
-            return $model->newQuery()->whereHas('users', function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            });
-        }
+        return $model->newQuery();
     }
 
     /**
@@ -65,11 +59,11 @@ class ProjectDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('project-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(0, 'asc');
+            ->setTableId('role-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('Bfrtip')
+            ->orderBy(1, 'asc');
     }
 
     /**
@@ -79,16 +73,15 @@ class ProjectDataTable extends DataTable
      */
     protected function getColumns()
     {
-        $columns = [Column::make('name'),];
-        if (auth()->user()->role_id == 1) {
-            $columns[] = Column::computed('action')
+        return [
+
+            Column::make('name'),
+            Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
-                ->addClass('text-center');
-        }
-
-        return $columns;
+                ->width(400)
+                ->addClass('text-center'),
+        ];
     }
 
     /**
@@ -98,6 +91,6 @@ class ProjectDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Project_' . date('YmdHis');
+        return 'Role_' . date('YmdHis');
     }
 }

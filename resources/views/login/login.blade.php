@@ -42,11 +42,6 @@
                       in</button>
                     <a class="text-muted" href="#!">Forgot password?</a>
                   </div>
-
-                    <div class="d-flex align-items-center justify-content-center pb-4">
-                        <p class="mb-0 mr-auto">Don't have an account?</p>
-                        <a href="{{ route('register') }}" type="button" class="btn btn-outline-danger ml-auto">Create new</a>
-                    </div>
                 </form>
 
               </div>

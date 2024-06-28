@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class TeamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view team', ['only' => ['index']]);
+        $this->middleware('permission:create team', ['only' => ['create','store']]);
+        $this->middleware('permission:update team', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete team', ['only' => ['destroy']]);
+    }
+    
     public function index(TeamDataTable $dataTable){
         return $dataTable->render('admin.team.index');
     }

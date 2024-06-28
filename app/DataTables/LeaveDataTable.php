@@ -34,7 +34,7 @@ class LeaveDataTable extends DataTable
                 $user = auth()->user();
                 $approveButton = '';
                 
-                if ($user->hasRole('super-admin')) {
+                if ($user->role_id == 1) {
                     $approveButton = <<<HTML
                         <form action="$approveUrl" method="POST" style="display:inline;">
                             <input type="hidden" name="_method" value="POST">
@@ -43,6 +43,7 @@ class LeaveDataTable extends DataTable
                         </form>
                     HTML;
                 }
+                if ($row->status == 'Pending') {
                 return <<<HTML
                     <a href="$editUrl" class="btn btn-sm btn-primary">Edit</a>
                     <form action="$deleteUrl" method="POST" style="display:inline;">
@@ -52,9 +53,9 @@ class LeaveDataTable extends DataTable
                     </form>
                     
                         $approveButton
-                    
-                    
+                        
                 HTML;
+                }
             });
     }
 
@@ -68,7 +69,7 @@ class LeaveDataTable extends DataTable
     {
          /** @var User $user */         
         $user = auth()->user();
-        if ($user->hasRole('super-admin')) {
+        if ($user->role_id == 1) {
             // Return all records
             return $model->newQuery();
         } else {

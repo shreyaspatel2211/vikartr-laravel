@@ -324,16 +324,19 @@ return [
             'text' => 'Category',
             'url' => 'categories',
             'icon' => 'fas fa-tags',
+            'can' => 'is-super-admin',
         ],
         [
             'text' => 'Company',
             'url' => 'companies',
             'icon' => 'fas fa-building',
+            'can' => 'is-super-admin',
         ],
         [
             'text' => 'Contacts',
             'url' => 'admin/contact',
             'icon' => 'fa fa-address-book',
+            'can' => 'is-super-admin',
         ],
         [
             'text' => 'Leave',
@@ -344,36 +347,43 @@ return [
             'text' => 'Team',
             'url' => 'teams',
             'icon' => 'fa fa-users',
+            'can' => 'view teams',
         ],
         [
             'text' => 'Blog',
             'url' => 'blogs',
             'icon' => 'fas fa-blog',
+            'can' => 'is-super-admin',
         ],
         [
             'text' => 'Service',
             'url' => 'admin_services',
             'icon' => 'fa fa-wrench',
+            'can' => 'is-super-admin',
         ],
         [
             'text' => 'Portfolio',
             'url' => 'portfolios',
             'icon' => 'fas fa-briefcase',
+            'can' => 'is-super-admin',
         ],
         [
             'text' => 'Career',
             'url' => 'admin_careers',
             'icon' => 'fa fa-graduation-cap',
+            'can' => 'is-super-admin',
         ],
         [
             'text' => 'Email Logs',
             'url' => 'email_logs',
             'icon' => 'fa fa-graduation-cap',
+            'can' => 'is-super-admin',
         ],
         [
             'text' => 'Whatsapp Logs',
             'url' => 'whatsapp_logs',
             'icon' => 'fa fa-graduation-cap',
+            'can' => 'is-super-admin',
         ],
         ['header' => 'Admin'],
         [

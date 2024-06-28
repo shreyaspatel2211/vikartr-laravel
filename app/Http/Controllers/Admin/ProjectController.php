@@ -10,6 +10,13 @@ use App\Models\User;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view project', ['only' => ['index']]);
+        $this->middleware('permission:create project', ['only' => ['create','store']]);
+        $this->middleware('permission:update project', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete project', ['only' => ['destroy']]);
+    }
     public function index(ProjectDataTable $dataTable){
         return $dataTable->render('admin.project.index');
     }

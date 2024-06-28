@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view service', ['only' => ['index']]);
+        $this->middleware('permission:create service', ['only' => ['create','store']]);
+        $this->middleware('permission:update service', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete service', ['only' => ['destroy']]);
+    }
     public function index(ServiceDataTable $dataTable){
         return $dataTable->render('admin.service.index');
     }

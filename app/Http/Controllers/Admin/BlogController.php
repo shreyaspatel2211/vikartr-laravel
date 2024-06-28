@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view blog', ['only' => ['index']]);
+        $this->middleware('permission:create blog', ['only' => ['create','store']]);
+        $this->middleware('permission:update blog', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete blog', ['only' => ['destroy']]);
+    }
 
     public function index(BlogDataTable $dataTable)
     {

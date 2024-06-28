@@ -25,6 +25,14 @@ use Yajra\DataTables\DataTables;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view contact', ['only' => ['index']]);
+        $this->middleware('permission:create contact', ['only' => ['create','store']]);
+        $this->middleware('permission:update contact', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete contact', ['only' => ['destroy']]);
+    }
+
     public function index(ContactDataTable $dataTable)
     {
         return $dataTable->render('admin.contact.index');
@@ -242,7 +250,7 @@ class ContactController extends Controller
             ]
         ]);
 
-        $pendingLogs = MessageLog::where('status', 'pending')->take(10)->get(); // Get pending email logs in batches of 10
+        $pendingLogs = MessageLog::where('status', 'pending')->take(100)->get(); // Get pending email logs in batches of 10
 
         foreach ($pendingLogs as $log) {
             $contact = Contact::find($log->contact_id);
@@ -278,13 +286,11 @@ class ContactController extends Controller
             }
         }
         foreach ($contacts as $contact) {
-            if (!EmailLog::where('email',$contact->email)->where('status','pending')->first()) {
-                EmailLog::create([
-                    'contact_id' => $contact->id,
-                    'email' => $contact->email,
-                    'status' => 'pending'
-                ]);
-            }
+            EmailLog::create([
+                'contact_id' => $contact->id,
+                'email' => $contact->email,
+                'status' => 'pending'
+            ]);
         }
 
         return redirect()->back()->with('completed', 'Emails scheduled successfully to selected contacts.');
@@ -292,12 +298,12 @@ class ContactController extends Controller
 
     public function sendEmails()
     {
-        $pendingLogs = EmailLog::where('status', 'pending')->take(10)->get(); // Get pending email logs in batches of 10
+        $pendingLogs = EmailLog::where('status', 'pending')->take(100)->get(); // Get pending email logs in batches of 10
 
         foreach ($pendingLogs as $log) {
             $contact = Contact::find($log->contact_id);
             if ($contact) {
-                Mail::to(trim($contact->email))->send(new ContactMail($contact));
+                Mail::to($contact->email)->send(new ContactMail($contact));
                 $log->update(['status' => 'success']);
             }
         }

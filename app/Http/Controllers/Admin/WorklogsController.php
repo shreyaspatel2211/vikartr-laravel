@@ -11,55 +11,80 @@ use App\Models\User;
 
 class WorklogsController extends Controller
 {
-    public function index(WorklogDataTable $dataTable){
+    public function __construct()
+    {
+        $this->middleware('permission:view worklog', ['only' => ['index']]);
+        $this->middleware('permission:create worklog', ['only' => ['create','storeWorklog']]);
+        $this->middleware('permission:update worklog', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete worklog', ['only' => ['destroy']]);
+    }
+
+    public function index(WorklogDataTable $dataTable)
+    {
         return $dataTable->render('admin.worklog.index');
     }
-    public function create(){
-        
-         /** @var User $user */
+    public function create()
+    {
+
+        /** @var User $user */
 
         $user = auth()->user();
-        if ($user->hasRole('super-admin')) {
+        if ($user->role_id == 1) {
             $projects = Project::all();
         } else {
             $projects = $user->project;
-        }   
-        
-        return view('admin.worklog.create', compact('projects'));
+        }
+        $users = User::all();
+        return view('admin.worklog.create', compact('projects', 'users'));
     }
 
     public function storeWorklog(Request $request)
     {
-    // Validate the form input
-    $validatedData = $request->validate([
-        'project_id' => 'required',
-        'description' => 'required|string',
-        'date' => 'required'
-        // Add validation rules for other form fields as needed
-    ]);
+        // Validate the form input
+        $rules = [
+            'project_id' => 'required',
+            'description' => 'required|string',
+            // Add validation rules for other form fields as needed
+        ];
 
-    $sanitizedDescription = strip_tags($validatedData['description']);
-    // Create a new service
-    $worklog = new Worklog;
-    $worklog->project()->associate(Project::find($request->input('project_id')));
-    $worklog->date = now()->toDateString();
-    $worklog->user_id = auth()->id(); // Assuming you are storing the current user's ID
-    $worklog->description = $sanitizedDescription;
-    $worklog->save();
+        if (auth()->user()->role_id == 1) {
+            $rules['user_id'] = 'required|exists:users,id'; // Ensure the selected user ID exists
+        }
 
-    // Retrieve worklogs for a user
-    $userWorklogs = Worklog::where('user_id', auth()->id())->get();
-    // Redirect back to the services page with a success message
-    return redirect()->route('admin_worklogs')->with('success', 'Worklog added successfully.');
-}
-/**
-     * Show the form for editing the specified resource.
-     */
+        $validatedData = $request->validate($rules);
+
+        $sanitizedDescription = strip_tags($validatedData['description']);
+
+        // Create a new worklog
+        $worklog = new Worklog;
+        $worklog->project()->associate(Project::find($request->input('project_id')));
+        $worklog->date = now()->toDateString();
+
+        if (auth()->user()->role_id == 1) {
+            $worklog->user_id = $request->input('user_id'); // Use selected user ID from dropdown
+        } else {
+            $worklog->user_id = auth()->id(); // Use authenticated user ID
+        }
+
+        $worklog->description = $sanitizedDescription;
+        $worklog->save();
+
+        // Redirect back to the worklogs page with a success message
+        return redirect()->route('admin_worklogs')->with('completed', 'Worklog added successfully.');
+    }
+
     public function edit(string $id)
     {
         $worklog = Worklog::findOrFail($id);
-        $projects = Project::all();
-        return view('admin.worklog.edit',['worklog' => $worklog, 'projects' => $projects]);
+        /** @var User $user */
+
+        $user = auth()->user();
+        if ($user->role_id == 1) {
+            $projects = Project::all();
+        } else {
+            $projects = $user->project;
+        }
+        return view('admin.worklog.edit', compact('worklog','projects'));
     }
 
     /**
@@ -68,7 +93,7 @@ class WorklogsController extends Controller
     public function update(Request $request, string $id)
     {
         $worklog = Worklog::findOrFail($id);
-    
+
         $updateData = $request->validate([
             'project_id' => 'required',
             'description' => 'required|max:255',
@@ -78,10 +103,9 @@ class WorklogsController extends Controller
         if ($worklog->date != now()->toDateString()) {
             return redirect('/admin/worklogs')->with('error', 'You can only update today\'s worklog.');
         }
-        
-            Worklog::whereId($id)->update($updateData);
-            return redirect('/admin/worklogs')->with('completed', 'Worklog has been updated');
-        
+
+        Worklog::whereId($id)->update($updateData);
+        return redirect('/admin/worklogs')->with('completed', 'Worklog has been updated');
     }
 
     /**
@@ -90,13 +114,11 @@ class WorklogsController extends Controller
     public function destroy(string $id)
     {
         $worklog = Worklog::findOrFail($id);
-        
+
         if ($worklog->date != now()->toDateString()) {
             return redirect('/admin/worklogs')->with('error', 'You can only delete today\'s worklog.');
         }
-            $worklog->delete();
-            return redirect('/admin/worklogs')->with('completed', 'Worklog has been deleted');
-        
+        $worklog->delete();
+        return redirect('/admin/worklogs')->with('completed', 'Worklog has been deleted');
     }
-
 }

@@ -9,7 +9,7 @@
 
 <div class="card mr-5 mt-5 ml-5">
     <div class="mt-3 ml-5 mb-3 font-weight-bold">
-        <h1>Edit Contact</h1>
+        <h1>Edit User</h1>
     </div>
 
     <form method="post" action="{{ url('users/'.$user->id) }}" class="mr-5 ml-5">
@@ -21,9 +21,9 @@
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" name="name" id="name" value="{{ $user->name }}" class="form-control">
-                    </div>  
+                    </div>
                 </div>
-                
+
                 <div class="col-6">
                     <div class="form-group">
                         <label for="email">Email:</label>
@@ -31,35 +31,38 @@
                     </div>
                 </div>
             </div>
-        
+
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                    <label for="roles">Roles:</label>
+                        <label for="roles">Roles:</label>
                         <select name="roles[]" id="roles" class="form-control" multiple>
-                                    <option value="">Select Role</option>
-                                    @foreach ($roles as $role)
-                                    <option
-                                        value="{{ $role }}"
-                                        {{ in_array($role, $userRoles) ? 'selected':'' }}>
-                                    
-                                        {{ $role }}
-                                    </option>
-                                    @endforeach
+                            <option value="">Select Role</option>
+                            @foreach ($roles as $role)
+                            <option value="{{ $role }}" {{ in_array($role, $userRoles) ? 'selected':'' }}>
+
+                                {{ $role }}
+                            </option>
+                            @endforeach
                         </select>
-                    </div>  
-                </div>
-                
-                <div class="col-6">
-                    <div class="form-group">
-                        <div class="row justify-content-center">
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-block btn-primary mt-4">Update User</button>
-                            </div>
-                        </div> 
                     </div>
                 </div>
-            </div>            
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password" class="form-control">
+                    </div>
+                </div>
+            </div>
+            
+                <div class="form-group">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-block btn-primary mt-4">Update User</button>
+                        </div>
+                    </div>
+                </div>
+            
         </div>
     </form>
 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\RoleDataTable;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -17,10 +18,9 @@ class RoleController extends Controller
         $this->middleware('permission:delete role', ['only' => ['destroy']]);
     }
 
-    public function index()
+    public function index(RoleDataTable $dataTable)
     {
-        $roles = Role::get();
-        return view('role-permission.role.index', ['roles' => $roles]);
+        return $dataTable->render('role-permission.role.index');
     }
 
     public function create()

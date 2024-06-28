@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UserDataTable;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -20,10 +21,10 @@ class UserController extends Controller
         $this->middleware('permission:delete user', ['only' => ['destroy']]);
     }
 
-    public function index()
+    public function index(UserDataTable $dataTable)
     {
-        $users = User::get();
-        return view('role-permission.user.index', ['users' => $users]);
+        return $dataTable->render('role-permission.user.index');
+        
     }
 
     public function create()
@@ -67,8 +68,9 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'password' => 'nullable|string|min:8|max:20',
-            'roles' => 'required'
+            'password' => 'nullable|string',
+            'roles' => 'required',
+            
         ]);
 
         $data = [
