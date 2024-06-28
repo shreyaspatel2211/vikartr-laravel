@@ -53,8 +53,10 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog_details/{id}', [BlogController::class, 'details'])->name('blog_details');
 
 Route::post('/book_call_with_us', [ContactUsController::class, 'bookCallWithUS'])->name('book_call_with_us');
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
+if (env('ENABLE_REGISTRATION', false)) {
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register']);
+}
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::post('/admin/store_project', [ProjectController::class, 'storeProject'])->name('admin_store_project');
 Route::get('/admin/contact/import', [ContactController::class, 'import'])->name('admin_contact_import');
