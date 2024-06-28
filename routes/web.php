@@ -75,7 +75,7 @@ Route::get('/home', [App\Http\Controllers\IndexController::class, 'index'])->nam
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['role:super-admin|admin']], function () {
+Route::group(['auth'], function () {
     Route::resource('teams', TeamController::class);
     Route::resource('companies', CompanyController::class);
     Route::get('/admin/contact', [ContactController::class, 'index'])->name('admin_contact');
