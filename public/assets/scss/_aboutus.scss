@@ -1,0 +1,126 @@
+.section_all {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    min-height: 100vh;
+}
+  
+.section-title {
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+  
+.section-subtitle {
+    letter-spacing: 0.4px;
+    line-height: 28px;
+    max-width: 550px;
+}
+  
+.section-title-border {
+    background-color: $dominate-color;
+    height: 13px; // Fixed typo
+    width: 44px;
+}
+
+#about {
+    .img_about {
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 2px 2px 14px 1px rgba(255,255,255,.1);
+        }
+    }
+}
+
+.section_title_all {
+    max-width: 990px;
+    margin: 0 auto;
+}
+
+.section-title-border-white {
+    background-color: $white;
+    height: 2px;
+    width: 100px;
+}
+  
+.about_icon i {
+    font-size: 22px;
+    height: 65px;
+    width: 65px;
+    line-height: 65px;
+    display: inline-block;
+    background: $white;
+    border-radius: 35px;
+    color: $accent-color;
+    box-shadow: 0 8px 20px -2px rgba(158, 152, 153, 0.5);
+}
+  
+.about_header_main {
+    .about_heading {
+        max-width: 450px;
+        font-size: 24px;
+    }
+}
+
+  
+.about_icon {
+    span {
+        position: relative;
+        top: -10px;
+    }
+}
+  
+.about_content_box_all {
+    padding: 28px;
+}
+
+.our-team-section {
+    .our-team-img {
+        width: 80%;
+        height: auto;
+        border-radius: 100%;
+    }
+}
+
+.faq-wrapper {
+    .card {
+        margin-bottom: 40px;
+        .card-header {
+            border-radius: 6px;
+        }
+        .collapsible-link {
+            width: 100%;
+            position: relative;
+            text-align: left;
+            font-size: 24px;
+            text-transform: capitalize !important;
+            border: 0;
+            box-shadow: none;
+            text-decoration: unset;
+            cursor: pointer !important;
+
+            &:hover {
+                color: $white;
+            }
+        }
+      
+        .collapsible-link::before {
+            content: "+";
+            position: absolute;
+            top: 50%;
+            right: 0.8rem;
+            transform: translateY(-50%);
+            display: block;
+            font-size: 24px;
+            line-height: 28px;
+        }
+      
+        .collapsible-link[aria-expanded="true"]::before {
+            content: "-";
+        }
+    }
+}

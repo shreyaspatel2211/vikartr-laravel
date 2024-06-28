@@ -1,0 +1,115 @@
+.btn-wrapper {
+  position: relative;
+  margin: 0.5em;
+  margin-left: 0;
+  z-index: 99991;
+  @media (max-width: 767px) {
+    margin-left: 0;
+  }
+  &.center {
+    margin: 0 auto;
+    @include flex(center, center, null, column);
+    text-decoration: none !important;
+    width: 100%;
+  }
+  &.align-right {
+    margin-left: auto;
+  }
+
+  &.btn-fit {
+    width: fit-content;
+  }
+  &.btn-50 {
+    width: 50%;
+    @media (max-width: 767px) {
+      width: 98%;
+    }
+  }
+  &.btn-full {
+    width: 100%;
+  }
+
+  &:hover,
+  &:focus {
+  .btn {
+    transform: translate(6px,5px);
+
+    @media (max-width: 767px) {
+
+    }
+  }
+}
+
+}
+.btn-img {
+   z-index: 2;
+   margin-right: 15px;
+  transition: transform 0.4s;
+  @include width-height(30px, 30px);
+  @media (max-width: 767px) {
+    @include width-height(20px, 20px);
+  }
+}
+.btn {
+  @include flex(center, center, null, null);
+  @include fontSize-lineHeight(20px, 28px);
+  background-color: $accent-color;
+  font-family: $IBMPlexMono-Medium;
+  box-shadow: none;
+  color: $white;
+  outline: none;
+  padding: 20px 30px;
+  height: 78px;
+  position: relative;
+  transition: transform 0.1s;
+  text-transform: uppercase;
+  cursor: pointer !important;
+  z-index: 1;
+  opacity: 1 !important;
+
+  @media (min-width: 1200px) and (max-width: 1600px) {
+    font-size: 18px;
+    height: 55px;
+    padding: 15px 20px;
+  }
+  @media screen and (max-width: 1199px){
+    font-size: 18px;
+  }
+  @media screen and (max-width: 767px){
+    height: 48px;
+    padding: 10px 30px;
+  }
+
+  &:hover {
+    background-color: $accent-color;
+  }
+
+  &.btn-white {
+    background-color: $white;
+    color: $gray1;
+
+    &:hover {
+      background-color: $white;
+    }
+  }
+
+  &.no-img {
+    padding: 20px 30px;
+  }
+}
+
+.btn__shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: translate(6px,5px);
+  z-index: 0;
+  background-color: $dominate-color;
+  border-radius: 6px;
+
+  &.white {
+    background-color: $white;
+  }
+}

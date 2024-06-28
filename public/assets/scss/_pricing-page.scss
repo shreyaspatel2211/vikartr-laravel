@@ -1,0 +1,435 @@
+.hire-resource {
+    padding: 50px 0;
+    .title-intro-section {
+        max-width: 75%;
+        @media (max-width: 991px) {
+            max-width: 100%;
+        }
+    }
+    .hire-resource-tab-section-wrapper {
+        .hire-resource-tab-section {
+            @include flex(center, null, null, null);
+            margin-bottom: 62px;
+
+            .hire-resource-tab {
+                padding: 10px;
+                border: 1px solid $dominate-color;
+                width: 50%;
+                transition: all 0.5s ease-out;
+                @media (min-width: 1200px) and (max-width: 1600px) {
+                    padding: 6px;
+                }
+                @media (max-width: 767px) {
+                    width: 50%;
+                    padding: 6px;
+                }
+
+                &:first-child {
+                    border-right: 0
+                }
+
+                h5 {
+                    @include flex(center, center, null, null);
+                    padding: 24px 32px;
+                    height: 94px;
+                    @media (min-width: 1200px) and (max-width: 1600px) {
+                        height: 68px;
+                    }
+                    cursor: pointer !important;
+                    @media (max-width: 767px) {
+                        padding: 12px;
+                        height: 60px;
+                    }
+                }
+
+                &.active {
+                    h5 {
+                        background-color: $accent-color;
+                        color: $white;
+                    }
+                }
+            }
+        }
+
+        .hire-resource-content-tab-wrapper {
+            .hire-resource-content-tab {
+                display: none;
+                &.active {
+                    @include flex(null, null, null, null);
+
+                    @media (max-width: 767px) {
+                        flex-direction: column;
+                    }
+                }
+                .hire-resource-how-it-works {
+                    width: 25%;
+                    align-self: flex-start;
+                    position: sticky;
+                    top: 121px;
+                    @media (min-width: 1200px) and (max-width: 1600px) {
+                        top: 100px;
+                    }
+                    @media (max-width: 767px) {
+                        top: 100px;
+                    }
+                    @media (max-width: 767px) {
+                        width: 100%;
+                    }
+
+                    h4 {
+                        margin-bottom: 32px;
+                    }
+
+                    .hire-resource-how-it-works-content {
+                        padding-right: 25px;
+                        padding-bottom: 100px;
+                        .hire-resource-how-it-works-content-block {
+                            padding-bottom: 32px;
+                            position: relative;
+                            padding-left: 32px;
+
+                            &::before {
+                                content: "";
+                                @include width-height(11px, 11px);
+                                display: inline-block;
+                                background-color: $accent-color;
+                                border-radius: 50%;
+                                position: absolute;
+                                left: 10px;
+                                top: 8px;
+                                z-index: 1;
+                            }
+
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                left: 15px;
+                                @include width-height(1px, 100%);
+                                border-left: 1px dashed $gray3;
+                                top: 15px;
+                            }
+
+                            &:last-child {
+                                &::after {
+                                    display: none;
+                                }
+                            }
+                            .hire-resource-how-it-works-content-block-top {
+                                @include flex(center, null, null, null);
+                                margin-bottom: 16px;
+                                cursor: pointer !important;
+                                * {
+                                    cursor: pointer !important;
+                                }
+
+                                img {
+                                    @include width-height(32px, 32px);
+                                    margin-right: 16px;
+                                }
+                            }
+
+                            p {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                .hire-resource-pricing-tab-wrapper {
+                    width: 75%;
+                    @include flex(null, null, null, null);
+                    color: $dominate-color;
+                    @media (max-width: 767px) {
+                        flex-direction: column;
+                        width: 100%;
+                    }
+                    .hire-resource-pricing-tab {
+                        width: 33.33%;
+                        padding: 20px;
+                        border: 1px solid $dominate-color;
+                        @include flex(null, null, null, column);
+                        transition: all 0.3s ease-in-out;
+                        @media (min-width: 1200px) and (max-width: 1600px) {
+                            padding: 15px 12px;
+                        }
+                        @media (max-width: 767px) {
+                            width: 100%;
+                        }
+
+                        h4 {
+                            margin-bottom: 24px;
+                            min-height: 95px;
+                            @media (min-width: 1200px) and (max-width: 1600px) {
+                                margin-bottom: 16px;
+                            }
+                        }
+
+                        h2 {
+                            margin-bottom: 48px;
+                            @media (min-width: 1200px) and (max-width: 1600px) {
+                                margin-bottom: 30px;
+                            }
+                            span {
+                                margin-left: -15px;
+                            }
+                        }
+
+                        .description-para {
+                            margin-bottom: 48px;
+                        }
+
+                        .hire-resource-pricing-description {
+                            margin-bottom: 35px;
+                            h5 {
+                                margin-bottom: 16px;
+                            }
+                            ul {
+                                li {
+                                    @include flex(center, null, null, null);
+                                    position: relative;
+                                    margin-bottom: 18px;
+
+                                    .badge-round-animation {
+                                        position: relative;
+                                        right: unset;
+                                        top: unset;
+                                        margin-right: 20px;
+                                        .rotate-animation {
+                                            @include width-height(40px, 40px);
+                                            &.white {
+                                                display: none;
+                                            }
+                                        }
+                                        .waving-animation {
+                                            @include width-height(24px, 24px);
+                                        }
+                                    }
+
+                                    h6 {
+                                        p {
+                                            display: inline-block;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .btn-wrapper {
+                            margin-top: auto;
+                        }
+
+                        &:hover {
+                            background-color: $accent-color;
+                            .hire-resource-pricing-description {
+                                .badge-round-animation {
+                                    .rotate-animation {
+                                        &.blue {
+                                            display: none;
+                                        }
+                                        &.white {
+                                            display: block;
+                                        }
+                                    }
+                                }
+                            }
+                            .btn-wrapper {
+                                margin-top: auto;
+                            }
+                        }
+                    }
+                }
+
+                .our-tech-expertise {
+                    width: 75%;
+                    padding: 0;
+                    @media (max-width: 767px) {
+                        width: 100%;
+                    }
+                    .our-tech-expertise-tab-item-wrapper {
+                        width: 100%;
+
+                        .our-tech-expertise-tab-button {
+                            min-width: 16.7%;
+
+                        }
+                    }
+                    .our-tech-expertise-tab-content-wrapper {
+                        .our-tech-expertise-tab-content-item-wrapper {
+                            .our-tech-expertise-tab-content-item {
+                                width: 33.33%;
+                                border-right: 0;
+                                @media (max-width: 767px) {
+                                    width: 100%;
+                                }
+
+                                &:nth-child(3n + 3) {
+                                    border-right: 1px solid $dominate-color;
+                                }
+
+                                &:nth-child(4n + 4) {
+                                    border-right: 0;
+                                }
+
+                                &:last-child {
+                                    border-right: 1px solid $dominate-color;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.hiring-steps {
+    padding: 60px 0;
+    .container {
+        @include flex(center, null, null, null);
+        @media (max-width: 767px) {
+            flex-direction: column;
+        }
+        .hiring-steps-block {
+            @include flex(center, center, null, column);
+            @include width-height(25%, 200px);
+            padding: 12px;
+            border-top: 1px solid $gray2;
+            border-bottom: 1px solid $gray2;
+            @media (max-width: 767px) {
+                @include width-height(100%, 140px);
+                border: 1px solid $gray2;
+                border-bottom: 0;
+
+                &:last-child {
+                    border-bottom: 1px solid $gray2;
+                }
+            }
+
+            img {
+                height: 72px;
+                margin-bottom: 10px;
+
+                @media (max-width: 767px) {
+                    height: 60px;
+                }
+            }
+        }
+    }
+}
+
+.form-our-founder {
+    padding: 50px 0;
+    .container {
+        @include flex(center, null, null, null);
+        border-bottom: 1px solid $gray2;
+
+        @media (max-width: 767px) {
+            border-bottom: 0;
+        }
+
+        @media (max-width: 991px) {
+            flex-direction: column;
+        }
+
+        .form-our-founder-profile {
+            @include flex(null, center, null, null);
+            z-index: 99999;
+
+            @media (max-width: 767px) {
+                border-bottom: 1px solid $gray2;
+            }
+
+            .form-our-founder-title {
+                position: absolute;
+                left: 5%;
+                text-align: center;
+                z-index: 1;
+                @media (min-width: 1200px) and (max-width: 1600px) {
+                    left: 4%;
+                }
+                @media (max-width: 767px) {
+                    top: 0;
+                    left: 3%;
+                    text-align: left;
+                }
+                
+
+                > div {
+                    font-size: 48px;
+                    max-width: 200px;
+                    line-height: 45px;
+                    text-align: center;
+
+                    @media (max-width: 767px) {
+                        font-size: 28px;
+                        line-height: 22px;
+                        max-width: 130px;
+                        text-align: left;
+                    }
+                }
+
+                img {
+                    filter: invert(100%) sepia(5%) saturate(458%) hue-rotate(58deg) brightness(119%) contrast(100%);
+                    transform: scaleX(-1) scaleY(-1);
+                    margin-top: 15px;
+                    height: 65px;
+                    @media (max-width: 767px) {
+                        height: 40px;
+                    }
+                    
+                }
+            }
+
+            .form-our-founder-image {
+                @include flex(center, center, null, null);
+                position: relative;
+
+                .form-our-founder-blue-bg {
+                    position: absolute;
+                    @include width-height(445px, 445px);
+                    background: $accent-color;
+                    border-radius: 50%;
+                    top: 115px;
+                    @media (min-width: 1200px) and (max-width: 1600px) {
+                        @include width-height(365px, 365px);
+                    }
+                    @media (max-width: 767px) {
+                        @include width-height(325px, 325px);
+                        top: 90px;
+                    }
+                    .hey-founder-tile-tile-badge-animation {
+                        position: absolute;
+                        top: 20px;
+                        transform: rotate(20deg);
+                        @media (max-width: 767px) {
+                            top: 0;
+                        }
+                    }
+                }
+                .founder-img {
+                    height: 600px;
+                    z-index: 1;
+                    @media (min-width: 1200px) and (max-width: 1600px) {
+                        height: 500px;
+                    }
+                    @media (max-width: 767px) {
+                        height: 430px;
+                    }
+                }
+            }
+        }
+
+        .form-our-founder-description {
+            .quote-img {
+                margin-bottom: 25px;
+
+                @media (max-width: 767px) {
+                    opacity: 0;
+                }
+            }
+
+            h5 {
+                margin-bottom: 32px;
+            }
+        }
+    }
+}

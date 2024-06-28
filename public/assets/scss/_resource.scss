@@ -1,0 +1,168 @@
+.guide-listing {
+    .meet-team-list-wrapper {
+        .meet-team-list {
+            border: 1px solid;
+            border-color: $gray3;
+            margin-bottom: -1px;
+            &:nth-child(odd) {
+                border-right: 0;
+            }
+
+            @media (max-width: 991px) {
+                border-left: 0;
+                border-right: 0;
+            }
+
+            &:hover {
+                background-color: transparent !important;
+            }
+        }
+    }
+
+    &.guide-template {
+        .meet-team-list-wrapper {
+            .meet-team-list {
+                padding: 20px;
+                &:hover {
+                    opacity: 1 !important;
+                    background-color: $white !important;
+                }
+                .meet-team-img-wrapper {
+                    width: 233px;
+                    min-width: 233px;
+                    margin-right: 24px;
+                    padding: 0;
+                    @media (max-width: 991px) {
+                        width: 100%;
+                        margin-right: 0;
+                        margin-bottom: 20px;
+                    }
+                    img {
+                        height: 160px;
+                    }
+                }
+        
+                .meet-team-list-descp {
+                    width: 100%;
+                    padding: 0;
+
+                    h5 {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.single-guide-slider {
+    @media (max-width: 991px) {
+        position: relative;
+        z-index: 99999;
+    }
+    .container {
+        .single-guide-slider-wrapper {
+            padding-bottom: 95px;
+            @media (min-width: 1200px) and (max-width: 1600px) {
+                padding-bottom: 60px;
+            }
+            .slick-arrow {
+                top: unset;
+                transform: translate(0,0);
+                bottom: 0;
+                @include width-height(50%, 95px);
+                border: 1px solid $gray2;
+                // border-bottom: 0;
+                background-color: $dominate-color;
+                z-index: 99991;
+                cursor: pointer !important;
+                transition: all 0.3s ease-out;
+                @media (min-width: 1200px) and (max-width: 1600px) {
+                    height: 60px;
+                }
+
+                &:hover {
+                    background-color: $accent-color;
+                }
+
+                @media (max-width: 767px) {
+                    height: 47px;
+                }
+
+                &::before {
+                    content: "";
+                    display: inline-block;
+                    background: url("../../assets/images/arrow-right.svg");
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    @include width-height(80px, 21px);
+                    opacity: 1;
+
+                    @media (max-width: 767px) {
+                        @include width-height(45px, 13px);
+                    }
+                }
+
+                &.slick-prev {
+                    left: 0;
+                    &::before {
+                        transform: scaleX(-1);
+                    }
+                }
+
+                &.slick-next {
+                    right: 0;
+                    border-left: 0
+                }
+            }
+            .single-guide-slider-item {
+                @include flex(null, null, null, null);
+                @media (max-width: 991px) {
+                    flex-direction: column;
+                }
+                .section-half {
+                    padding: 24px;
+        
+                    &.single-guide-slider-img {
+                        > div {
+                            height: 700px;
+                            @include flex(center, center, null, null);
+                            @media (min-width: 1200px) and (max-width: 1600px) {
+                                height: 400px;
+                            }
+
+                            @media (max-width: 991px) {
+                                height: 300px;
+                            }
+        
+                            img {
+                                width: 50%;
+                                transform: rotate(-6deg);
+                                @media (min-width: 1200px) and (max-width: 1600px) {
+                                    width: 40%;
+                                }
+                            }
+                        }
+                    }
+        
+                    &.single-guide-slider-desc {
+                        @include flex(null, center, null, column);
+        
+                        h2 {
+                            margin-bottom: 24px;
+                        }
+        
+                        .btn-wrapper {
+                            margin-top: 60px;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

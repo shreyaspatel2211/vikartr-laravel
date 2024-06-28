@@ -1,0 +1,141 @@
+.our-ebooks {
+    .meet-team-list-wrapper {
+        .meet-team-list {
+            margin-bottom: 25px;
+            
+            .meet-team-img-wrapper-main {
+                padding: 16px;
+                .meet-team-img-wrapper {
+                    background-color: $gray4;
+                    height: 540px;
+                    @include flex(flex-end, center, null, null);
+                    width: 100%;
+                    transition: all 0.3s ease-in-out;
+
+                    @media (min-width: 992px) and (max-width: 1600px) {
+                        height: 330px;
+                    }
+                    @media (max-width: 991px) {
+                        height: 350px;
+                    }
+    
+                    img {
+                        width: 75%;
+                        margin-bottom: 20px;
+                        transform: rotate(-8deg);
+                        background-color: transparent !important;
+                        @media (min-width: 1200px) and (max-width: 1600px) {
+                            margin-bottom: 10px;
+                        }
+                        @media (max-width: 991px) {
+                            width: 60%;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+            &:hover {
+                opacity: 1;
+                .meet-team-img-wrapper-main {
+                    .meet-team-img-wrapper {
+                        background-color: $accent-color;
+                    }
+                }
+            }
+
+            .meet-team-list-descp {
+                padding: 20px;
+                @include flex(null, space-between, null, column);
+            }
+        }
+    }
+}
+
+.inside-ebook {
+    padding: 80px 0;
+    .container {
+        @include flex(null, null, null, null);
+        background: $white;
+        padding: 24px;
+        border: 1px solid $gray3;
+        @media (max-width: 991px) {
+            flex-direction: column;
+            padding: 16px;
+        }
+        .inside-ebook-left {
+            padding-right: 15px;
+
+            @media (max-width: 767px) {
+                margin-bottom: 40px;
+                padding-right: 0;
+            }
+            h2 {
+                margin-bottom: 30px;
+            }
+            ul {
+                list-style: disc;
+                padding-left: 35px;
+                padding-right: 25px;
+                max-height: 540px;
+                overflow: hidden;
+                overflow-y: auto;
+                @media (max-width: 767px) {
+                    padding-right: 0;
+                }
+                li {
+                    margin-bottom: 22px;
+                }
+            }
+        }
+
+        .inside-ebook-right {
+            padding: 16px;
+            border: 1px solid $gray4;
+            
+            .inside-ebook-form-title {
+                @include flex(center, null, null, null);
+                margin-bottom: 50px;
+                
+                .badge-round-animation {
+                    position: relative;
+                    margin-right: 20px;
+                    top: 0;
+                    right: unset;
+                    left: 0;
+                }
+            }
+        }
+
+        .ebook-form {
+            .zoho-contact-form {
+                .form-wrapper {
+                    padding: 0;
+                    background-color: $white;
+                    border: 0;
+                    .customerphone-wrapper {
+                        align-items: flex-end;
+                    }
+
+                    .agree-terms-privacy {
+                        margin-bottom: 40px;
+                    }
+
+                    .field {
+                        input,
+                        select,
+                        textarea {
+                            background-color: $white;
+                            border: 1px solid $gray4 !important;
+                            color: $gray3;
+            
+                            &::placeholder,
+                            option {
+                                color: $gray3;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
