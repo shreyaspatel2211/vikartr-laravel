@@ -29,7 +29,9 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                @can('create user')
                     <a href="{{ url('users/create') }}" class="btn btn-primary rounded">New User</a>
+                    @endcan
                 </div>
             </div>
         </div>

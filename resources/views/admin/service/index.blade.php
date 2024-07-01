@@ -29,7 +29,9 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                @can('create service')
                 <a href="{{ route('admin_services.create')}}" class="btn btn-primary">New Service</a>
+                @endcan
                 </div>
             </div>
         </div>

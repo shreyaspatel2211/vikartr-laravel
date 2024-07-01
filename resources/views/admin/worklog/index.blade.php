@@ -29,7 +29,9 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                @can('create worklog')
                     <a href="{{ route('admin_worklog_create')}}" class="btn btn-primary rounded">New Worklog</a>
+                    @endcan
                 </div>
             </div>
         </div>

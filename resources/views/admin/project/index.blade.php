@@ -28,7 +28,9 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                @can('create project')
                     <a href="{{ route('admin_project_create')}}" class="btn btn-primary rounded">New Project</a>
+                    @endcan
                 </div>
             </div>
         </div>

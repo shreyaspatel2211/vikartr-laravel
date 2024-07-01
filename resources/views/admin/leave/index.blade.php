@@ -27,7 +27,9 @@
             </div>
             <div class="col-2">
                 <div class="btn-group" role="group">
+                @can('create leave')
                     <a href="{{ route('leaves.create')}}" class="btn btn-primary rounded">New Leave</a>
+                    @endcan
                 </div>
             </div>
         </div>

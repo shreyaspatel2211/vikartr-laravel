@@ -29,7 +29,9 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                @can('create team')
                 <a href="{{ route('teams.create')}}" class="btn btn-primary">New Team</a>
+                @endcan
                 </div>
             </div>
         </div>

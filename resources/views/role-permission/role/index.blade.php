@@ -28,15 +28,19 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                @can('create role')
                     <a href="{{ url('roles/create') }}" class="btn btn-primary rounded">New Role</a>
+                    @endcan
                 </div>
             </div>
         </div>
     </div>
     <div class="card-body">
         {{ $dataTable->table() }}
+        
     </div>
 </div>
+
 
 @stop
 @section('js')

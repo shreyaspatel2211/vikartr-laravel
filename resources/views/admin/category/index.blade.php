@@ -30,7 +30,9 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                @can('create category')
                 <a href="{{ route('categories.create')}}" class="btn btn-primary">New Category</a>
+                @endcan
                 </div>
             </div>
         </div>

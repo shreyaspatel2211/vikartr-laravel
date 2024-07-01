@@ -28,7 +28,9 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                @can('create permission')
                     <a href="{{ url('permissions/create') }}" class="btn btn-primary rounded">New Permission</a>
+                    @endcan
                 </div>
             </div>
         </div>

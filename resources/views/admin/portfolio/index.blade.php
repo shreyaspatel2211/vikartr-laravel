@@ -29,7 +29,9 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                @can('create portfolio')
                 <a href="{{ route('portfolios.create')}}" class="btn btn-primary">New Portfolio</a>
+                @endcan
                 </div>
             </div>
         </div>

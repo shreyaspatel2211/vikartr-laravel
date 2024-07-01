@@ -30,7 +30,9 @@
                 <div class="col-4">
                     <div class="btn-group" role="group">
                         <a href="{{ route('admin_contact_import')}}" class="btn btn-primary mr-3 rounded">Import</a>
+                        @can('create contact')
                         <a href="{{ route('admin_contact_create')}}" class="btn btn-primary rounded">New Contact</a>
+                        @endcan
                     </div>
                 </div>
             </div>

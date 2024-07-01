@@ -27,7 +27,9 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                    @can('create blog')
                     <a href="{{ route('blogs.create')}}" class="btn btn-primary rounded">New Blog</a>
+                    @endcan
                 </div>
             </div>
         </div>

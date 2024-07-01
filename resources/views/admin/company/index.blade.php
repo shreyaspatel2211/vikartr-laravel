@@ -29,7 +29,9 @@
             </div>
             <div class="col-4">
                 <div class="btn-group" role="group">
+                @can('create company')
                 <a href="{{ route('companies.create')}}" class="btn btn-primary">New Company</a>
+                @endcan
                 </div>
             </div>
         </div>
