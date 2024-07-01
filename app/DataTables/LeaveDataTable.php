@@ -107,7 +107,6 @@ class LeaveDataTable extends DataTable
             ->printable(false)
             ->width(150)
             ->addClass('text-center'),
-            Column::make('leave_type'),
             Column::make('duration'),
             Column::make('from'),
             Column::make('to'),

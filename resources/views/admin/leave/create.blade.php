@@ -18,25 +18,13 @@
     <form action="{{ route('leaves.store') }}" method="POST" class="mr-5 ml-5">
         @csrf
         <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="leave_type">Leave Type:</label>
-                    <select class="form-control" id="leave_type" name="leave_type">
-                        <option value="" disabled selected>Select Leave Type</option>
-                        <option value="Paid">Paid</option>
-                        <option value="Unpaind">Unpaid</option>
-                    </select>
-                    @error('leave_type')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-                </div>
-            </div>
-            <div class="col-6">
+            
+            <div class="col-4">
                 <label for="duration">Leave Duration:</label>
                 <select class="form-control" id="duration" name="duration">
                     <option value="" disabled selected>Select Leave Duration Type</option>
                     <option value="First Half Day">First Half Day</option>
-                    <option value="Last Half Day">Last Half Day</option>
+                    <option value="Second Half Day">Second Half Day</option>
                     <option value="Single Day">Single Day</option>
                     <option value="Multiple Day">Multiple Day</option>
                 </select>
@@ -44,10 +32,7 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-        </div>
-
-        <div class="row from-to">
-            <div class="col-6">
+            <div class="col-4">
                 <div class="form-group">
                     <div class="form-group">
                         <label for="from">From:</label>
@@ -58,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <div class="form-group">
                     <label for="to">To:</label>
                     <input type="date" class="form-control" id="to" name="to">
@@ -100,26 +85,5 @@
         .catch(error => {
             console.error(error);
         });
-
-        document.addEventListener('DOMContentLoaded', function () {
-        var durationSelect = document.getElementById('duration');
-        var fromToSection = document.querySelector('.from-to');
-
-        durationSelect.addEventListener('change', function () {
-            var selectedValue = this.value;
-
-            if (selectedValue === 'First Half Day' || selectedValue === 'Last Half Day') {
-                fromToSection.style.display = 'none';
-                // Clear the date inputs when hiding
-                document.getElementById('from').value = '';
-                document.getElementById('to').value = '';
-            } else {
-                fromToSection.style.display = 'flex';
-            }
-        });
-
-        // Trigger change event to handle the initial state on page load
-        durationSelect.dispatchEvent(new Event('change'));
-    });
 </script>
 @stop

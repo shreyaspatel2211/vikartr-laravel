@@ -31,7 +31,6 @@ class LeaveController extends Controller
     {
         
         $validatedData = $request->validate([
-            'leave_type' => 'required',
             'duration' => 'required',
             'from' => 'nullable|date',
             'to' => 'nullable|date',
@@ -42,7 +41,6 @@ class LeaveController extends Controller
     
         // Create a new service
         $leave = new Leave();
-        $leave->leave_type = $validatedData['leave_type'];
         $leave->duration = $validatedData['duration'];
         $leave->from = $validatedData['from']?$validatedData['from']:null;
         $leave->to = $validatedData['to']?$validatedData['to']:null;
@@ -70,7 +68,6 @@ class LeaveController extends Controller
     public function update(Request $request, string $id)
     {
         $updateData = $request->validate([
-            'leave_type' => 'required',
             'duration' => 'required',
             'from' => 'nullable|date',
             'to' => 'nullable|date',
