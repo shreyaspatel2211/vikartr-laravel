@@ -13,10 +13,16 @@ class EmailLog extends Model
         'contact_id',
         'email',
         'status',
+        'email_template_id'
     ];
 
     public function contact()
     {
         return $this->belongsTo(Contact::class);
+    }
+
+    public function emailTemplate()
+    {
+        return $this->belongsTo(EmailTemplate::class);
     }
 }

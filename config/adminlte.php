@@ -388,6 +388,7 @@ return [
             'icon' => 'fa fa-graduation-cap',
             'can' => 'view whatsapp log',
         ],
+        
         ['header' => 'Admin'],
         [
             'text' => 'User',
@@ -406,6 +407,18 @@ return [
             'url' => 'permissions',
             'icon' => 'fas fa-user-secret',
             'can' => 'is-super-admin',
+        ],
+        [
+            'text' => 'Email Template',
+            'url' => 'email_templates',
+            'icon' => 'fa fa-graduation-cap',
+            'can' => 'view email log',
+        ],
+        [
+            'text' => 'Message Template',
+            'url' => 'mesaage_templates',
+            'icon' => 'fa fa-graduation-cap',
+            'can' => 'view email log',
         ],
 
         ['header' => 'Account Setting'],

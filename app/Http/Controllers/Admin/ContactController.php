@@ -13,7 +13,9 @@ use Illuminate\Validation\Rule;
 use App\Models\Contact;
 use App\Models\Country;
 use App\Models\EmailLog;
+use App\Models\EmailTemplate;
 use App\Models\MessageLog;
+use App\Models\MessageTemplate;
 use App\Models\State;
 use App\Models\User;
 use Exception;
@@ -28,14 +30,16 @@ class ContactController extends Controller
     public function __construct()
     {
         $this->middleware('permission:view contact', ['only' => ['index']]);
-        $this->middleware('permission:create contact', ['only' => ['create','store']]);
-        $this->middleware('permission:update contact', ['only' => ['update','edit']]);
+        $this->middleware('permission:create contact', ['only' => ['create', 'store']]);
+        $this->middleware('permission:update contact', ['only' => ['update', 'edit']]);
         $this->middleware('permission:delete contact', ['only' => ['destroy']]);
     }
 
     public function index(ContactDataTable $dataTable)
     {
-        return $dataTable->render('admin.contact.index');
+        $emaiTemplates = EmailTemplate::all();
+        $messageTemplates = MessageTemplate::all();
+        return $dataTable->render('admin.contact.index', ['emaiTemplates' => $emaiTemplates, 'messageTemplates' => $messageTemplates]);
     }
 
     public function create()
@@ -183,7 +187,7 @@ class ContactController extends Controller
             ]
         ]);
 
-       
+
 
         foreach ($contacts as $contact) {
             try {
@@ -204,11 +208,12 @@ class ContactController extends Controller
 
     public function sendMessage(Request $request)
     {
+        $templateId = $request->input('message_template_id');
         if ($request->input('select_all') == "yes") {
             $contacts = Contact::all();
         } else {
             $contactIds = $request->input('contact_ids');
-    
+
             if (is_array($contactIds) && count($contactIds) > 0) {
                 $contacts = Contact::whereIn('id', $contactIds)->get();
             }
@@ -218,28 +223,19 @@ class ContactController extends Controller
                 'contact_id' => $contact->id,
                 'phone' => $contact->phone,
                 'email' => $contact->email,
-                'status' => 'pending'
+                'status' => 'pending',
+                'message_template_id' => $templateId
             ]);
         }
-    
+
         return redirect()->back()->with('completed', 'Messages scheduled successfully to selected contacts.');
     }
 
     public function sendMessages()
     {
-        $accessToken = 'EAAZAD5l24e30BO8r07z7etnbP549iDnLKInAT1rDDC6PZCEu2WNuTJLvN3qFDnVHZCspbj0fPrCezo9jr3HvWqx0aMVQERwytr3AlpdAw824a6LtLcPCS2WahiYueJx0ZBZBY6F0WeaDV861qK5fwPdbQGvZBZC02rzNeZBlKfrWYu2sKMdfk6ygMYjxlp2FThwgfeQNlieNfbxknZCO4jnsZD';
-
-        // Your message data
-        $messageData = [
-            'messaging_product' => 'whatsapp',
-            'type' => 'template',
-            'template' => [
-                'name' => 'hello_world',
-                'language' => [
-                    'code' => 'en_US'
-                ]
-            ]
-        ];
+        $accessToken = 'EAAZAD5l24e30BOwtRAWnpBeMiS8u5SzAKaIeFXXwPNq8YAtIDuSS6IqsLv8LJJ9h8d2BBs6dMtlpZAZCbb6KJXzKimUc7SZBsG3llgri5R0Nz5NZAno2LfBZA85jlfBRkMxlfDxqpJlV1TW9GZApIfzZAoLrSqGoiHRp3ee0fr3u0E1OA49P6vp86wp6d9VIWK4yDZAJuZBupguc44wBNOe04ZC';
+        
+        
 
         // Create Guzzle client
         $client = new Client([
@@ -255,27 +251,35 @@ class ContactController extends Controller
         foreach ($pendingLogs as $log) {
             $contact = Contact::find($log->contact_id);
             if ($contact) {
-                try {
-                    $response = $client->post('368263343018482/messages', [
-                        'json' => array_merge($messageData, ['to' => $contact])
-                    ]);
-    
-                    if ($response->getStatusCode() === 200) {
-                        $log->update(['status' => 'success']);
-                        return redirect()->back()->with('completed', 'Message sent successfully.');
-                    } else {
-                        return redirect()->back()->with('error', 'Failed to send message to' . $contact . '.');
+                $template = MessageTemplate::find($log->message_template_id);
+                if ($template) {
+                    $templateData = $template->json;              
+                    $templateData = str_replace('{{phone_number}}', $contact->phone, $templateData);
+     
+                    $messageData = json_decode($templateData);
+                         
+                    try {
+                        $response = $client->post('368263343018482/messages', [
+                            'json' => $messageData
+                        ]);
+
+                        if ($response->getStatusCode() === 200) {
+                            $log->update(['status' => 'success']);
+                            return redirect()->back()->with('completed', 'Message sent successfully.');
+                        } else {
+                            return redirect()->back()->with('error', 'Failed to send message to' . $contact . '.');
+                        }
+                    } catch (Exception $e) {
+                        return redirect()->back()->with('error', 'Error sending message to' . $contact . ':' . $e->getMessage() . '.');
                     }
-                } catch (Exception $e) {
-                    return redirect()->back()->with('error', 'Error sending message to' . $contact . ':' . $e->getMessage() . '.');
                 }
-                
             }
         }
     }
 
     public function sendMail(Request $request)
     {
+        $templateId = $request->input('template_id');
         if ($request->input('select_all') == "yes") {
             $contacts = Contact::all();
         } else {
@@ -289,7 +293,8 @@ class ContactController extends Controller
             EmailLog::create([
                 'contact_id' => $contact->id,
                 'email' => $contact->email,
-                'status' => 'pending'
+                'status' => 'pending',
+                'email_template_id' => $templateId
             ]);
         }
 
@@ -303,8 +308,22 @@ class ContactController extends Controller
         foreach ($pendingLogs as $log) {
             $contact = Contact::find($log->contact_id);
             if ($contact) {
-                Mail::to($contact->email)->send(new ContactMail($contact));
-                $log->update(['status' => 'success']);
+                // Fetch the email template data including JSON
+                $template = EmailTemplate::find($log->email_template_id);
+
+                if ($template) {
+                       
+                    $templateData = [
+                        'subject' => $template->subject,
+                        'content' => $template->json, // Assuming json_data contains the HTML content
+                    ];
+                    $templateData['content'] = str_replace('{{first_name}}', $contact->first_name, $templateData['content']);
+                    $templateData['content'] = str_replace('{{last_name}}', $contact->last_name, $templateData['content']);
+                    $templateData['content'] = str_replace('{{company_name}}', $contact->company->name, $templateData['content']);
+
+                    Mail::to($contact->email)->send(new ContactMail($contact, $templateData));
+                    $log->update(['status' => 'success']);
+                }
             }
         }
 

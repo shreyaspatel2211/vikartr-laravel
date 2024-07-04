@@ -15,10 +15,16 @@ class MessageLog extends Model
         'email',
         'phone',
         'status',
+        'message_template_id'
     ];
 
     public function contact()
     {
         return $this->belongsTo(Contact::class);
+    }
+
+    public function messageTemplate()
+    {
+        return $this->belongsTo(MessageTemplate::class);
     }
 }

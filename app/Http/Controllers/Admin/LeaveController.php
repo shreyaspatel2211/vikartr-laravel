@@ -101,4 +101,9 @@ class LeaveController extends Controller
         $leave->save();
         return redirect('/leaves')->with('completed', 'Leave approve successfully');
     }
+
+    public function downloadLeavePolicy(){
+        $file = public_path() . '/leavepolicy.pdf';
+        return response()->download($file, 'leavepolicy.pdf');
+    }
 }

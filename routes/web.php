@@ -18,11 +18,13 @@ use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\EmailLogsController;
+use App\Http\Controllers\Admin\EmailTemplateController;
 use App\Http\Controllers\Admin\LeaveController;
 use App\Http\Controllers\Admin\PortfolioController as AdminPortfolioController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\WhatsAppLogsController;
+use App\Http\Controllers\Admin\WhatsappMessageTemplateController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PortfolioController;
 use Spatie\Permission\Middleware\RoleMiddleware;
@@ -65,6 +67,8 @@ Route::post('/send/contact/message', [ContactController::class, 'sendMessage'])-
 Route::get('/send/messages', [ContactController::class, 'sendMessages'])->name('send_messages');
 Route::post('/send/contact/mail', [ContactController::class, 'sendMail'])->name('send_contact_mail');
 Route::get('/send/emails', [ContactController::class, 'sendEmails'])->name('send_emails');
+Route::get('/leave/policy', [LeaveController::class, 'downloadLeavePolicy'])->name('leave_policy');
+
 
 
 // Auth::routes();
@@ -91,6 +95,8 @@ Route::group(['auth'], function () {
     Route::resource('admin_careers', CareerController::class);
     Route::resource('email_logs', EmailLogsController::class);
     Route::resource('whatsapp_logs', WhatsAppLogsController::class);
+    Route::resource('email_templates', EmailTemplateController::class);
+    Route::resource('mesaage_templates', WhatsappMessageTemplateController::class);
     Route::get('/admin/project', [ProjectController::class, 'index'])->name('admin_project');
     Route::get('/admin/project/create', [ProjectController::class, 'create'])->name('admin_project_create');
     Route::get('/admin/project_edit/{id}', [ProjectController::class, 'edit'])->name('admin_project_edit');
