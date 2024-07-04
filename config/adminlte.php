@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Vikartr Technologies',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,13 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Vikartr Technologies</b>',
+    'logo_img' => '/assets/images/logo.svg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Vikartr Technologies Logo',
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +87,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => '/assets/images/logo.svg',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -113,11 +114,11 @@ return [
         'enabled' => true,
         'mode' => 'fullscreen',
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'alt' => 'AdminLTE Preloader Image',
+            'path' => '/assets/images/logo.svg',
+            'alt' => 'Vikartr Technologies logo',
             'effect' => 'animation__shake',
-            'width' => 60,
-            'height' => 60,
+            'width' => 200,
+            'height' => 200,
         ],
     ],
 
