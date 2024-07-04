@@ -413,13 +413,13 @@ return [
             'text' => 'Email Template',
             'url' => 'email_templates',
             'icon' => 'fa fa-graduation-cap',
-            'can' => 'view email log',
+            'can' => 'is-super-admin',
         ],
         [
             'text' => 'Message Template',
             'url' => 'mesaage_templates',
             'icon' => 'fa fa-graduation-cap',
-            'can' => 'view email log',
+            'can' => 'is-super-admin',
         ],
 
         ['header' => 'Account Setting'],
