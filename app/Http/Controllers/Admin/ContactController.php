@@ -303,8 +303,8 @@ class ContactController extends Controller
 
     public function sendEmails()
     {
-        $pendingLogs = EmailLog::where('status', 'pending')->take(100)->get(); // Get pending email logs in batches of 10
-
+        $pendingLogs = EmailLog::where('status', 'pending')->latest('updated_at')->take(1)->get(); // Get pending email logs in batches of 10
+       
         foreach ($pendingLogs as $log) {
             $contact = Contact::find($log->contact_id);
             if ($contact) {
