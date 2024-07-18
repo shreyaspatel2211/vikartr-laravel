@@ -26,6 +26,6 @@ class ContactMail extends Mailable
         return $this->view('admin.emails.contact', [
             'contact' => $this->contact,
             'company_name'=> $company->name
-        ]);
+        ])->subject('Quick Discussion!');
     }
 }
